@@ -15,4 +15,8 @@ class AdminController extends Controller
         auth()->guard('web')->logout();
         return redirect('/login');
     }
+
+    public function AdminLogin(Request $request){
+        return view('admin.admin_login');
+    }
 }
