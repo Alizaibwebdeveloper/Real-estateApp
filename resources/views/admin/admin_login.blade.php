@@ -48,7 +48,7 @@
                         <div class="card">
                             <div class="row">
                                 <div class="col-md-4 pe-md-0">
-                                    <img src="{{ asset('upload/login.png') }}" style="height: 100%; width:100%; "
+                                    <img src="{{ asset('upload/login.png') }}" style="height: 100%; width:100%;"
                                         alt="">
                                 </div>
                                 <div class="col-md-8 ps-md-0">
@@ -79,12 +79,10 @@
                                                 </label>
                                             </div>
                                             <div>
-                                                <a href="{{ asset('/dashboard.html') }}"
-                                                    class="btn btn-primary me-2 mb-2 mb-md-0 text-white">Login</a>
-                                                <button type="button"
+
+                                                <button type="submit"
                                                     class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0">
-                                                    <i class="btn-icon-prepend" data-feather="twitter"></i>
-                                                    Login with twitter
+                                                    Login
                                                 </button>
                                             </div>
                                             <a href="register.html" class="d-block mt-3 text-muted">Not a user? Sign
