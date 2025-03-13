@@ -39,4 +39,9 @@ class EmailController extends Controller
     return redirect('admin/email/compose')->with('success', 'Email successfully sent!');
 }
 
+public function email_send(){
+    $data['getRecord'] = ComposeEmailModel::get();
+    return view('admin.emails.send', $data);
+}
+
 }
