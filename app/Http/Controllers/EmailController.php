@@ -44,4 +44,22 @@ public function email_send(){
     return view('admin.emails.send', $data);
 }
 
+public function admin_email_send_delete(Request $request) {
+    if ($request->has('id')) {
+        $ids = explode(',', $request->query('id')); // Use `query()` instead of `input()`
+
+        foreach ($ids as $id) {
+            $getRecord = ComposeEmailModel::find($id);
+            if ($getRecord) {
+                $getRecord->delete();
+            }
+        }
+
+        return redirect()->back()->with('success', 'Selected emails successfully deleted!');
+    } else {
+        return redirect()->back()->with('error', 'No emails selected for deletion.');
+    }
+}
+
+
 }

@@ -1,6 +1,7 @@
 @extends('admin.admin_dashboard')
 @section('content')
     <div class="page-content">
+        @include('_message')
 
         <div class="row inbox-wrapper">
             <div class="col-lg-12">
@@ -124,7 +125,8 @@
                                         <div class="btn-group me-2">
                                             <button class="btn btn-outline-primary" type="button">Archive</button>
                                             <button class="btn btn-outline-primary" type="button">Span</button>
-                                            <button class="btn btn-outline-primary" type="button">Delete</button>
+                                            <a href="#" class="btn btn-outline-primary" id="getDeleteUrl"
+                                                onclick="return confirm('Are you sure you want to delete?');">Delete</a>
                                         </div>
                                         <div class="btn-group me-2 d-none d-xl-block">
                                             <button class="btn btn-outline-primary dropdown-toggle"
@@ -156,7 +158,8 @@
                                         <div class="email-list-item email-list-item--unread">
                                             <div class="email-list-actions">
                                                 <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input">
+                                                    <input type="checkbox" class="form-check-input delete-all-option"
+                                                        value="{{ $value->id }}">
                                                 </div>
                                                 <a class="favorite" href="javascript:;"><span><i
                                                             data-feather="star"></i></span></a>
@@ -186,4 +189,34 @@
         </div>
 
     </div>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('.delete-all-option').change(function() {
+                var total = '';
+                var ids = [];
+
+                $(".delete-all-option:checked").each(function() {
+                    ids.push($(this).val());
+                });
+
+                if (ids.length > 0) {
+                    total = ids.join(',');
+                    var url = '{{ url('admin/email_sent?id=') }}' + total;
+                    $('#getDeleteUrl').attr('href', url);
+                    // Enable the delete button
+                    $('#getDeleteUrl').removeClass('disabled');
+                } else {
+                    // Disable the delete button if nothing is selected
+                    $('#getDeleteUrl').attr('href', '#');
+                    $('#getDeleteUrl').addClass('disabled');
+                }
+
+                console.log('Selected IDs:', ids);
+                console.log('Final URL:', url);
+            });
+        });
+    </script>
 @endsection
