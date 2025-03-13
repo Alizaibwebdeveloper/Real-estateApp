@@ -11,7 +11,15 @@ use Illuminate\Support\Str;
 class AdminController extends Controller
 {
     public function AdminDashboard(Request $request){
-        return view('admin.index');
+        $users = User::selectRaw('YEAR(created_at) as year, MONTH(created_at) as month, COUNT(id) as total_users')
+    ->groupBy('year', 'month')
+    ->orderBy('year', 'desc')
+    ->orderBy('month', 'desc')
+    ->get();
+
+    $data['months']= $users->pluck('month');
+    $data['counts'] = $users->pluck('count');
+        return view('admin.index', $data);
     }
 
     public function AdminLogout(){
