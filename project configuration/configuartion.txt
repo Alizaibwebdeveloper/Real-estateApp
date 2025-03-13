@@ -1,0 +1,4 @@
+***********Admin configuration******* 
+
+email : alizaib12220@gmail.com
+password: 123456789

@@ -67,6 +67,11 @@ if (!empty($request->file('photo'))) {
             $data['getRecord'] = User::paginate(5);
             return view('admin.users_list', $data);
         }
+
+        public function admin_users_view($id){
+            $data['getRecord'] = User::find($id);
+            return view('admin.users.view', $data);
+        }
     }
 
 
