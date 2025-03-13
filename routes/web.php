@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgentController;
+use App\Http\Controllers\EmailController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,6 +29,8 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::post('admin_profile/update',[AdminController::class,'admin_profile_update']);
     Route::get('admin/users',[AdminController::class,'admin_users'])->name('admin.users');
     Route::get('admin/users/view/{id}',[AdminController::class,'admin_users_view']);
+    Route::get('admin/email/compose',[EmailController::class,'email_compose']);
+    Route::post('admin/email/compose_post',[EmailController::class,'email_compose_post']);
 });
 Route::middleware(['auth', 'role:agent'])->group(function(){
     Route::get('agent/dashboard',[AgentController::class, 'AgentDashboard'])->name('agent.dashboard');
