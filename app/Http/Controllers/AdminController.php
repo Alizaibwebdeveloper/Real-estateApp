@@ -62,6 +62,11 @@ if (!empty($request->file('photo'))) {
         return redirect('admin/profile')->with('success', 'Profile updated successfully!');
 
         }
+
+        public function admin_users(){
+            $data['getRecord'] = User::paginate(5);
+            return view('admin.users_list', $data);
+        }
     }
 
 
