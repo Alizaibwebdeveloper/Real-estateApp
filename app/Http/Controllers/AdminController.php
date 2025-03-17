@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Hash;
 use Auth;
+use App\Mail\RegisteredMail;
+use Mail;
 use Illuminate\Support\Str;
 
 class AdminController extends Controller
@@ -141,9 +143,12 @@ if (!empty($request->file('photo'))) {
             $user->password = Hash::make($request->password);
             $user->role = $request->role;
             $user->status = $request->status;
+            $user->remember_token = Str::random(50);
             $user->save();
 
-            return redirect('admin/users')->with('success', 'User added successfully!');
+            Mail::to($user->email)->send(new RegisteredMail($user));
+
+            return redirect('admin/users')->with('success', 'Email send to Registered added successfully!');
         }
     }
 
