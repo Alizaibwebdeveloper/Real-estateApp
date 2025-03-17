@@ -61,5 +61,17 @@ public function admin_email_send_delete(Request $request) {
     }
 }
 
+public function admin_email_read($id){
+    $data['getRecord'] = ComposeEmailModel::find($id);
+   return view('admin.emails.read', $data);
+}
+
+public function admin_email_read_delete($id){
+    $getRecord = ComposeEmailModel::find($id);
+        $getRecord->delete();
+        return redirect('admin/email/send')->with('success', ' send Email successfully deleted!');
+
+}
+
 
 }

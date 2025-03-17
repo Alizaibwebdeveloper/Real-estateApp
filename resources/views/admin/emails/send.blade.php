@@ -164,7 +164,7 @@
                                                 <a class="favorite" href="javascript:;"><span><i
                                                             data-feather="star"></i></span></a>
                                             </div>
-                                            <a href="./read.html" class="email-list-detail">
+                                            <a href="{{ url('admin/email/read/' . $value->id) }}" class="email-list-detail">
                                                 <div class="content">
                                                     <span class="from">{{ $value->subject }}</span>
                                                     <p class="msg">{{ $value->description }}</p>

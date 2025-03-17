@@ -32,7 +32,9 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::get('admin/email/compose',[EmailController::class,'email_compose']);
     Route::post('admin/email/compose_post',[EmailController::class,'email_compose_post']);
     Route::get('admin/email/send',[EmailController::class,'email_send']);
-    Route::get('admin/email_sent',[EmailController::class,'admin_email_send_delete']);
+
+    Route::get('admin/email/read/{id}', [EmailController::class, 'admin_email_read']);
+    Route::get('admin/email/read_delete/{id}', [EmailController::class, 'admin_email_read_delete']);
 });
 Route::middleware(['auth', 'role:agent'])->group(function(){
     Route::get('agent/dashboard',[AgentController::class, 'AgentDashboard'])->name('agent.dashboard');
