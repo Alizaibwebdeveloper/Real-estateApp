@@ -71,10 +71,47 @@ if (!empty($request->file('photo'))) {
 
         }
 
-        public function admin_users(){
-            $data['getRecord'] = User::paginate(5);
-            return view('admin.users_list', $data);
-        }
+        public function admin_users(Request $request)
+{
+    $query = User::query();
+
+    if ($request->filled('id')) {
+        $query->where('id', $request->id);
+    }
+
+    if ($request->filled('name')) {
+        $query->where('name', 'like', "%{$request->name}%");
+    }
+
+    if ($request->filled('username')) {
+        $query->where('username', 'like', "%{$request->username}%");
+    }
+
+    if ($request->filled('email')) {
+        $query->where('email', 'like', "%{$request->email}%");
+    }
+
+    if ($request->filled('phone')) {
+        $query->where('phone', 'like', "%{$request->phone}%");
+    }
+
+    if ($request->filled('website')) {
+        $query->where('website', 'like', "%{$request->website}%");
+    }
+
+    if ($request->filled('role')) {
+        $query->where('role', $request->role);
+    }
+
+    if ($request->filled('status')) {
+        $query->where('status', $request->status);
+    }
+
+    $data['getRecord'] = $query->paginate(5);
+
+    return view('admin.users_list', $data);
+}
+
 
         public function admin_users_view($id){
             $data['getRecord'] = User::find($id);

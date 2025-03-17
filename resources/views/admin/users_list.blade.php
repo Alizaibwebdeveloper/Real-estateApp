@@ -16,7 +16,7 @@
                     <div class="card-body">
 
                         <h6 class="card-title">Search Users</h6>
-                        <form action="" method="post">
+                        <form action="" method="get">
                             @csrf
                             <div class="row">
 
@@ -24,7 +24,7 @@
                                     <div class="form-group mb-3">
                                         <label for="id">Id</label>
                                         <input type="text" class="form-control" id="id" name="id"
-                                            placeholder="Enter Id">
+                                            value="{{ Request()->id }}" placeholder="Enter Id">
                                     </div>
                                 </div>
 
@@ -32,7 +32,7 @@
                                     <div class="form-group mb-3">
                                         <label for="name">Name</label>
                                         <input type="text" class="form-control" id="name" name="name"
-                                            placeholder="Enter Name">
+                                            value="{{ Request()->name }}" placeholder="Enter Name">
                                     </div>
                                 </div>
 
@@ -40,7 +40,7 @@
                                     <div class="form-group mb-3">
                                         <label for="username">Username</label>
                                         <input type="text" class="form-control" id="username" name="username"
-                                            placeholder="Enter username">
+                                            value="{{ Request()->username }}" placeholder="Enter username">
                                     </div>
                                 </div>
 
@@ -49,7 +49,7 @@
                                     <div class="form-group mb-3">
                                         <label for="username">Email Id</label>
                                         <input type="email" class="form-control" id="username" name="email"
-                                            placeholder="Enter email id">
+                                            name="{{ Request()->email }}" placeholder="Enter email id">
                                     </div>
                                 </div>
 
@@ -57,7 +57,8 @@
                                 <div class="col-sm-4">
                                     <div class="form-group mb-3">
                                         <label for="name">Phone</label>
-                                        <input type="text" class="form-control" name="phone" placeholder="Enter Phone">
+                                        <input type="text" class="form-control" name="phone"
+                                            value="{{ Request()->phone }}" placeholder="Enter Phone">
                                     </div>
                                 </div>
 
@@ -66,7 +67,7 @@
                                     <div class="form-group mb-3">
                                         <label for="website">Website</label>
                                         <input type="text" class="form-control" name="website"
-                                            placeholder="Enter webiste">
+                                            value="{{ Request()->website }}" placeholder="Enter webiste">
                                     </div>
                                 </div>
 
