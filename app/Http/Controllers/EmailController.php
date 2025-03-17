@@ -73,5 +73,4 @@ public function admin_email_read_delete($id){
 
 }
 
-
 }
