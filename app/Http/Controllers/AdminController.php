@@ -121,6 +121,30 @@ if (!empty($request->file('photo'))) {
         public function admin_add_users(){
             return view('admin.users.add');
         }
+
+        public function admin_add_users_store(Request $request){
+            $request->validate([
+                'name' =>'required',
+                'username' =>'required|unique:users',
+                'email' =>'required|unique:users|email',
+                'phone' =>'required|unique:users',
+                'password' => 'required|min:8',
+                'role' =>'required',
+               'status' =>'required',
+            ]);
+
+            $user = new User();
+            $user->name = $request->name;
+            $user->username = $request->username;
+            $user->email = $request->email;
+            $user->phone = $request->phone;
+            $user->password = Hash::make($request->password);
+            $user->role = $request->role;
+            $user->status = $request->status;
+            $user->save();
+
+            return redirect('admin/users')->with('success', 'User added successfully!');
+        }
     }
 
 
