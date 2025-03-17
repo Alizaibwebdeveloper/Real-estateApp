@@ -111,6 +111,9 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">User List</h4>
+                            <div class="d-flex align-item-center">
+                                <a href="{{ url('admin/users/add') }}" class="btn btn-primary">Add Users</a>
+                            </div>
 
                             <div class="table-responsive pt-3">
                                 <table class="table table-bordered">
@@ -139,8 +142,8 @@
                                                 <td>{{ $value->email }}</td>
                                                 <td>
                                                     @if ($value->photo)
-                                                        <img src="{{ asset('upload/' . $value->photo) }}" alt="User Image"
-                                                            style="width:100%; height:100%;">
+                                                        <img src="{{ asset('upload/' . $value->photo) }}"
+                                                            alt="User Image" style="width:100%; height:100%;">
                                                     @endif
                                                 </td>
                                                 <td>{{ $value->phone }}</td>
