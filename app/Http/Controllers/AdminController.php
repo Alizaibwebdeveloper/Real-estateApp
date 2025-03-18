@@ -109,7 +109,13 @@ if (!empty($request->file('photo'))) {
         $query->where('status', $request->status);
     }
 
-    $data['getRecord'] = $query->paginate(5);
+    $data['getRecord'] = $query->paginate(100);
+$data['TotalAdmin'] = User::where('role','=','admin')->count();
+$data['TotalAgent'] = User::where('role','=','agent')->count();
+$data['TotalUsers'] = User::where('role','=','user')->count();
+$data['TotalActive'] = User::where('status','=','active')->count();
+$data['TotalInActive'] = User::where('status','=','inactive')->count();
+            $data['TotalUser'] = User::count();
 
     return view('admin.users_list', $data);
 }

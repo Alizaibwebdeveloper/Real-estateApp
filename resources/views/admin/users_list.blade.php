@@ -8,6 +8,33 @@
                 <li class="breadcrumb-item"><a href="#">Users</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Users List</li>
             </ol>
+
+
+            <div class="d-flex align-items-center">
+                <a href="javacript:void(0)" class="btn btn-info">
+                    {{ $TotalAdmin }} Admin
+                </a>&nbsp;&nbsp;
+
+                <a href="javacript:void(0)" class="btn btn-warning">
+                    {{ $TotalAgent }} Agent
+                </a>&nbsp;&nbsp;
+
+                <a href="javacript:void(0)" class="btn btn-secondary">
+                    {{ $TotalUsers }} User
+                </a>&nbsp;&nbsp;
+
+                <a href="javacript:void(0)" class="btn btn-primary">
+                    {{ $TotalActive }} Active
+                </a>&nbsp;&nbsp;
+
+                <a href="javacript:void(0)" class="btn btn-danger">
+                    {{ $TotalInActive }} In Active
+                </a>&nbsp;&nbsp;
+
+                <a href="javacript:void(0)" class="btn btn-success">
+                    {{ $TotalUser }} Total
+                </a>
+            </div>
         </nav>
 
         {{-- search box start --}}
