@@ -1,4 +1,5 @@
-@extends('layouts.app')
+@extends('admin.admin_dashboard')
+
 
 @section('content')
     @include('_message')

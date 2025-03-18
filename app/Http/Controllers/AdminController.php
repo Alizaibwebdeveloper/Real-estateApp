@@ -174,6 +174,35 @@ if (!empty($request->file('photo'))) {
 
     return redirect('/admin/login')->with('success', 'Password reset successfully!');
 }
+
+    public function admin_users_edit($id){
+        $data['getRecord'] = User::find($id);
+        return view('admin.users.edit', $data);
     }
+
+    public function admin_users_edit_store(Request $request, $id){
+        $request->validate([
+            'name' =>'required',
+            'username' =>'required|unique:users,username,'.$id,
+            'email' =>'required|unique:users,email,'.$id,
+            'phone' =>'required|unique:users,phone,'.$id,
+            'role' =>'required',
+           'status' =>'required',
+            'password' => 'nullable|min:8',
+        ]);
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        if($request->password){
+            $user->password = Hash::make($request->password);
+        }
+        $user->role = $request->role;
+        $user->status = $request->status;
+        $user->save();
+        return redirect('admin/users')->with('success', 'User updated successfully!');
+    }
+}
 
 
