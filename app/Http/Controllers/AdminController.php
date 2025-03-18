@@ -246,6 +246,11 @@ public function admin_users_change_status(Request $request){
     return response()->json(['success' => 'Status changed successfully']);
 }
 
+public function my_profile(){
+    $data['getRecord'] = User::find(Auth::user()->id);
+    return view('admin.my_profile', $data);
+}
+
 }
 
 

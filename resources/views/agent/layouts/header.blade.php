@@ -26,8 +26,7 @@
                     <a href="javascript:;" class="dropdown-item py-2"><i class="flag-icon flag-icon-de" title="de"
                             id="de"></i> <span class="ms-1"> German </span></a>
                     <a href="javascript:;" class="dropdown-item py-2"><i class="flag-icon flag-icon-pt" title="pt"
-                            id="pt"></i> <span class="ms-1"> Portuguese
-                        </span></a>
+                            id="pt"></i> <span class="ms-1"> Portuguese </span></a>
                     <a href="javascript:;" class="dropdown-item py-2"><i class="flag-icon flag-icon-es" title="es"
                             id="es"></i> <span class="ms-1"> Spanish </span></a>
                 </div>
@@ -90,7 +89,7 @@
                     <div class="p-1">
                         <a href="javascript:;" class="dropdown-item d-flex align-items-center py-2">
                             <div class="me-3">
-                                <img class="wd-30 ht-30 rounded-circle" src="{{ asset('placeholder.com/30x30') }}"
+                                <img class="wd-30 ht-30 rounded-circle" src="https://via.placeholder.com/30x30"
                                     alt="userr">
                             </div>
                             <div class="d-flex justify-content-between flex-grow-1">
@@ -233,34 +232,28 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    @if (!empty(Auth::user()->photo))
-                        <img src="{{ asset('upload/' . Auth::user()->photo) }}"
-                            style="width: 40px; height:40px; border-radius: 50%;">
-                    @endif
+                    <img class="wd-30 ht-30 rounded-circle" src="https://via.placeholder.com/30x30" alt="profile">
                 </a>
                 <div class="dropdown-menu p-0" aria-labelledby="profileDropdown">
-                    <div class="d-flex flex-column align-items-center border-bottom px-5 py-3" style="width: 300px;">
+                    <div class="d-flex flex-column align-items-center border-bottom px-5 py-3">
                         <div class="mb-3">
-                            @if (!empty(Auth::user()->photo))
-                                <img src="{{ asset('upload/' . Auth::user()->photo) }}"
-                                    style="width: 100px; height: 100px; border-radius: 50%;">
-                            @endif
+                            <img class="wd-80 ht-80 rounded-circle" src="https://via.placeholder.com/80x80"
+                                alt="">
                         </div>
                         <div class="text-center">
                             <p class="tx-16 fw-bolder">{{ Auth::user()->name }}</p>
                             <p class="tx-12 text-muted">{{ Auth::user()->email }}</p>
                         </div>
                     </div>
-
                     <ul class="list-unstyled p-1">
                         <li class="dropdown-item py-2">
-                            <a href="{{ url('admin/profile') }}" class="text-body ms-0">
+                            <a href="pages/general/profile.html" class="text-body ms-0">
                                 <i class="me-2 icon-md" data-feather="user"></i>
                                 <span>Profile</span>
                             </a>
                         </li>
                         <li class="dropdown-item py-2">
-                            <a href="{{ url('admin/my_profile') }}" class="text-body ms-0">
+                            <a href="javascript:;" class="text-body ms-0">
                                 <i class="me-2 icon-md" data-feather="edit"></i>
                                 <span>Edit Profile</span>
                             </a>
@@ -272,7 +265,7 @@
                             </a>
                         </li>
                         <li class="dropdown-item py-2">
-                            <a href="{{ route('admin.logout') }}" class="text-body ms-0">
+                            <a href="{{ url('agent/logout') }}" class="text-body ms-0">
                                 <i class="me-2 icon-md" data-feather="log-out"></i>
                                 <span>Log Out</span>
                             </a>
