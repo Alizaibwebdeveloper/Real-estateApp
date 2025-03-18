@@ -203,6 +203,11 @@ if (!empty($request->file('photo'))) {
         $user->save();
         return redirect('admin/users')->with('success', 'User updated successfully!');
     }
+
+    public function admin_users_delete($id){
+        User::find($id)->delete();
+        return redirect('admin/users')->with('success', 'User deleted successfully!');
+    }
 }
 
 
