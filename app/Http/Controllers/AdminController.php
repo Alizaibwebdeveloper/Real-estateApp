@@ -233,6 +233,19 @@ $data['TotalInActive'] = User::where('status','=','inactive')->count();
       return response()->json(['success'=>'User updated successfully']);
 
 }
+
+public function admin_users_change_status(Request $request){
+    $user = User::find($request->id);
+    if (!$user) {
+        return response()->json(['error' => 'User not found'], 404);
+    }
+
+    $user->status = $request->status;
+    $user->save();
+
+    return response()->json(['success' => 'Status changed successfully']);
+}
+
 }
 
 

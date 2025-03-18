@@ -216,11 +216,22 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    @if ($value->status == 'active')
+                                                    {{-- @if ($value->status == 'active')
                                                         <span class="badge bg-primary">Active</span>
                                                     @else
                                                         <span class="badge bg-danger">Inactive</span>
-                                                    @endif
+                                                    @endif --}}
+
+                                                    <select class="form-control changeStatus" style="width: 170px;"
+                                                        id="{{ $value->id }}">
+                                                        <option value="active"
+                                                            @if ($value->status == 'active') selected @endif>Active
+                                                        </option>
+                                                        <option value="inactive"
+                                                            @if ($value->status == 'inactive') selected @endif>Inactive
+                                                        </option>
+                                                    </select>
+                                                    </select>
                                                 </td>
                                                 <td>{{ date('d-m-Y', strtotime($value->created_at)) }}</td>
                                                 <td>
@@ -285,6 +296,7 @@
     @section('script')
         <script>
             $(document).ready(function() {
+                // Handle form submission via AJAX
                 $('table').delegate('.submitform', 'click', function() {
                     var id = $(this).attr('id');
 
@@ -293,6 +305,9 @@
                         type: "POST",
                         data: $('.a_form' + id).serialize(),
                         dataType: 'json',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }, // Laravel requires CSRF token
                         success: function(response) {
                             alert(response.success);
                         },
@@ -300,7 +315,28 @@
                             console.log(xhr.responseText); // Debugging
                         }
                     });
+                });
 
+                // Handle status change
+                $('.changeStatus').change(function() {
+                    var status_id = $(this).val();
+                    var order_id = $(this).attr('id'); // Fix variable names
+
+                    $.ajax({
+                        url: "{{ url('admin/users/change_status') }}",
+                        type: "GET",
+                        data: {
+                            id: order_id, // Fix variable reference
+                            status: status_id
+                        },
+                        dataType: 'json',
+                        success: function(response) {
+                            alert(response.success);
+                        },
+                        error: function(xhr, status, error) {
+                            console.log(xhr.responseText); // Debugging
+                        }
+                    });
                 });
             });
         </script>
