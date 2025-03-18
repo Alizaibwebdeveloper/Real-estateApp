@@ -109,6 +109,16 @@ if (!empty($request->file('photo'))) {
         $query->where('status', $request->status);
     }
 
+    if ($request->start_date) {
+        $query->whereDate('created_at', '>=', $request->start_date);
+    }
+
+    // Check if end date is provided
+    if ($request->end_date) {
+        $query->whereDate('created_at', '<=', $request->end_date);
+    }
+
+
     $data['getRecord'] = $query->paginate(100);
 $data['TotalAdmin'] = User::where('role','=','admin')->count();
 $data['TotalAgent'] = User::where('role','=','agent')->count();

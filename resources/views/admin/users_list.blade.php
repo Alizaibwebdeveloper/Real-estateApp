@@ -124,6 +124,24 @@
                                     </div>
                                 </div>
 
+
+
+                                <div class="col-sm-2">
+                                    <div class="form-group mb-3">
+                                        <label for="website" class="form-label">Start Date</label>
+                                        <input type="date" class="form-control" name="start_date"
+                                            value="{{ Request()->start_date }}" placeholder="Enter start Date">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-2">
+                                    <div class="form-group mb-3">
+                                        <label for="website" class="form-label">End Date</label>
+                                        <input type="date" class="form-control" name="end_date"
+                                            value="{{ Request()->end_date }}" placeholder="Enter End Date">
+                                    </div>
+                                </div>
+
                             </div>
                             <button type="submit" class="btn btn-primary">Search</button>
                             <a href="{{ url('admin/users') }}" class="btn btn-danger">Reset</a>
