@@ -224,6 +224,15 @@ $data['TotalInActive'] = User::where('status','=','inactive')->count();
         User::find($id)->delete();
         return redirect('admin/users')->with('success', 'User deleted successfully!');
     }
+
+    public function admin_users_update(Request $request){
+
+      $recorder = User::find($request->input('edit_id'));
+      $recorder->name = $request->input('edit_name');
+      $recorder->save();
+      return response()->json(['success'=>'User updated successfully']);
+
+}
 }
 
 
