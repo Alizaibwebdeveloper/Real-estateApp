@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Welcome to Our Platform</title>
+    <title>Set Your New Password</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -62,20 +62,20 @@
 
     <div class="container">
         <div class="header">
-            Welcome to {{ config('app.name') }} 🎉
+            Set Your New Password 🔐
         </div>
 
         <div class="content">
             <p>Hello <strong>{{ $user->name }}</strong>,</p>
-            <p>Thank you for registering with <strong>{{ config('app.name') }}</strong>! We are excited to have you on
-                board.</p>
-            <p>You can log in to your account using the button below:</p>
+            <p>You have requested to set a new password for your account on <strong>{{ config('app.name') }}</strong>.
+            </p>
+            <p>Click the button below to set your new password:</p>
 
             <p style="text-align: center;">
-                <a href="{{ url('/admin/login') }}" class="btn">Login to Your Account</a>
+                <a href="{{ url('/set_new_password/' . $user->remember_token) }}" class="btn">Set New Password</a>
             </p>
 
-            <p>If you did not create an account, please ignore this email.</p>
+            <p>If you did not request this, please ignore this email.</p>
         </div>
 
         <div class="footer">

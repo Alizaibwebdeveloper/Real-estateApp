@@ -150,6 +150,30 @@ if (!empty($request->file('photo'))) {
 
             return redirect('admin/users')->with('success', 'Email send to Registered added successfully!');
         }
+
+        public function set_new_password($token){
+            $data['token'] = $token;
+            return view('auth.reset_pass', $data);
+        }
+
+        public function set_new_password_post(Request $request, $token)
+{
+    $user = User::where('remember_token', $token)->first(); // Fetch the user instance
+
+    if (!$user) {
+        return redirect('/admin/login')->with('error', 'Token not found or expired!');
+    }
+
+    $request->validate([
+        'password' => 'required|min:8',
+    ]);
+
+    $user->password = Hash::make($request->password);
+    $user->remember_token = Str::random(50);
+    $user->save(); // Now it's an instance, so save() works
+
+    return redirect('/admin/login')->with('success', 'Password reset successfully!');
+}
     }
 
 
