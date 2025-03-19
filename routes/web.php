@@ -50,9 +50,10 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::get('admin/my_profile',[AdminController::class, 'my_profile']);
 });
 Route::middleware(['auth', 'role:agent'])->group(function(){
-    Route::get('agent/dashboard',[AgentController::class, 'AgentDashboard'])->name('agent.dashboard');
 
+    Route::get('agent/dashboard',[AgentController::class, 'AgentDashboard'])->name('agent.dashboard');
     Route::get('agent/logout', [AgentController::class,'AgentLogout'])->name('agent.logout');
+    Route::get('agent/email/inbox', [AgentController::class,'agent_email_inbox']);
 
 });
 
