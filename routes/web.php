@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\UserTimeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -48,12 +49,27 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::get('admin/email/read_delete/{id}', [EmailController::class, 'admin_email_read_delete']);
 
     Route::get('admin/my_profile',[AdminController::class, 'my_profile']);
+
+    // user week start
+
+    Route::get('/admin/week', [UserTimeController::class,'admin_week']);
+    Route::get('admin/week/add',[UserTimeController::class, 'admin_week_add']);
+    Route::post('admin/week/add',[UserTimeController::class, 'admin_week_add_store']);
+    Route::get('admin/week/edit/{id}',[UserTimeController::class,'admin_week_edit']);
+    Route::post('admin/week/edit/{id}',[UserTimeController::class,'admin_week_edit_store']);
+    Route::get('admin/week/delete/{id}',[UserTimeController::class,'admin_week_delete']);
+
+    // user week end
+
 });
 Route::middleware(['auth', 'role:agent'])->group(function(){
 
     Route::get('agent/dashboard',[AgentController::class, 'AgentDashboard'])->name('agent.dashboard');
     Route::get('agent/logout', [AgentController::class,'AgentLogout'])->name('agent.logout');
     Route::get('agent/email/inbox', [AgentController::class,'agent_email_inbox']);
+
+    // user week start
+
 
 });
 
