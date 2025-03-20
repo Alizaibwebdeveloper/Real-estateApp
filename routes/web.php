@@ -59,9 +59,27 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::post('admin/week/edit/{id}',[UserTimeController::class,'admin_week_edit_store']);
     Route::get('admin/week/delete/{id}',[UserTimeController::class,'admin_week_delete']);
 
-    // user week end
+    // user week
+
+    // start week_time
+
+    Route::get('/admin/week_time', [UserTimeController::class,'week_time_list']);
+    Route::get('admin/week_time/add',[UserTimeController::class, 'week_time_add']);
+    Route::post('admin/week_time/add',[UserTimeController::class, 'week_time_add_store']);
+    Route::get('admin/week_time/edit/{id}',[UserTimeController::class,'week_time_edit']);
+    Route::post('admin/week_time/edit/{id}',[UserTimeController::class,'week_time_edit_store']);
+    Route::get('admin/week_time/delete/{id}',[UserTimeController::class,'week_time_delete']);
+    // End week_time
+
+    // schedule start
+
+    Route::get('/admin/schedule', [UserTimeController::class,'admin_schedule']);
+    Route::post('admin/schedule/add',[UserTimeController::class, 'admin_schedule_add']);
+    // schedule end
+
 
 });
+
 Route::middleware(['auth', 'role:agent'])->group(function(){
 
     Route::get('agent/dashboard',[AgentController::class, 'AgentDashboard'])->name('agent.dashboard');
