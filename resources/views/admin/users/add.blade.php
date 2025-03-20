@@ -40,7 +40,7 @@
                                 <label class="col-sm-3 col-form-label">Email<span style="color:red;">*</span></label>
                                 <div class="col-sm-9">
                                     <input type="email" name="email" class="form-control" autocomplete="off"
-                                        placeholder="Email" required>
+                                        placeholder="Email" required onblur="dublicateEmail(this)">
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -98,4 +98,27 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script>
+        function dublicateEmail(element) {
+            var email = $(element).val();
+            $.ajax({
+                url: "{{ url('check-email') }}",
+                type: "POST",
+                data: {
+                    email: email,
+                    _token: "{{ csrf_token() }}"
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.exists) {
+                        alert('Email already exists');
+                    } else {
+
+                    }
+                }
+            })
+        }
+    </script>
 @endsection

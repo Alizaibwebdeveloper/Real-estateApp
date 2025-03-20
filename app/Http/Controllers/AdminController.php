@@ -251,6 +251,20 @@ public function my_profile(){
     return view('admin.my_profile', $data);
 }
 
+// check email with Ajax call
+
+public function checkEmail(Request $request){
+
+    $email = $request->input('email');
+    $user =User::where('email', '=', $email)->first();
+    if($user){
+        return response()->json(array('exists'=> true));
+    }else{
+        return response()->json(array('exists'=> false));
+
+    }
+}
+
 
 
 }
