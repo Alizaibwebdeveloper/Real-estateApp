@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\UserTimeController;
+use App\Http\Controllers\NotificationController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -78,6 +79,13 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::get('/admin/schedule', [UserTimeController::class,'admin_schedule']);
     Route::post('admin/schedule/add',[UserTimeController::class, 'admin_schedule_add']);
     // schedule end
+
+    // Notification
+
+    Route::get('/admin/notification', [NotificationController::class,'notification_index']);
+    Route::post('admin/notification_send',[NotificationController::class ,'notification_send']);
+
+    // Notification end
 
 
 });
