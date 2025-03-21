@@ -7,6 +7,7 @@ use App\Http\Controllers\AgentController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\UserTimeController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\QRcodeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -87,6 +88,15 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
 
     // Notification end
 
+    // QR code
+
+    Route::get('/admin/qrcode', [QRcodeController::class,'qrcode_index']);
+    Route::get('admin/qrcode/add',[QRcodeController::class,'qrcode_add']);
+    Route::post('admin/qrcode/add',[QRcodeController::class,'qrcode_store']);
+    Route::get('admin/qrcode/edit/{id}',[QRcodeController::class,'qrcode_edit']);
+    Route::post('admin/qrcode/edit/{id}',[QRcodeController::class,'qrcode_update']);
+    Route::get('admin/qrcode/delete/{id}',[QRcodeController::class,'qrcode_delete']);
+    // QR code End
 
 });
 
